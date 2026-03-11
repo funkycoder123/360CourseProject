@@ -12,8 +12,7 @@ canvas.addEventListener("mousedown", startDrawing);
 canvas.addEventListener("mousemove", draw);
 canvas.addEventListener("mouseup", stopDrawing);
 
-function startDrawing(e)
-{
+function startDrawing(e) {
     drawing = true;
     currentStroke = [];
 
@@ -21,8 +20,7 @@ function startDrawing(e)
     currentStroke.push(point);
 }
 
-function draw(e)
-{
+function draw(e) {
     if (!drawing) return;
 
     const point = getMousePos(e);
@@ -40,16 +38,14 @@ function draw(e)
     ctx.stroke();
 }
 
-function stopDrawing()
-{
+function stopDrawing() {
     if (!drawing) return;
 
     drawing = false;
     strokes.push(currentStroke);
 }
 
-function getMousePos(e)
-{
+function getMousePos(e) {
     const rect = canvas.getBoundingClientRect();
 
     return {
@@ -58,26 +54,21 @@ function getMousePos(e)
     };
 }
 
-document.getElementById("clearBtn").onclick = () => 
-{
+document.getElementById("clearBtn").onclick = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     strokes = [];
 };
 
-document.getElementById("sendBtn").onclick = () => 
-{
+document.getElementById("sendBtn").onclick = () => {
     console.log("Drawing data:", strokes);
 
     // Incomplete, need to send this to server
     // Send through something like websockets or http
 };
 
-function renderStrokes(strokesData) // Call to display received messages using strokes
-{
-    strokesData.forEach(stroke => 
-    {
-        for (let i = 1; i < stroke.length; i++) 
-            {
+function renderStrokes(strokesData) { // Call to display received messages using strokes
+    strokesData.forEach(stroke => {
+        for (let i = 1; i < stroke.length; i++) {
             const prev = stroke[i-1];
             const curr = stroke[i];
 
