@@ -6,6 +6,7 @@ canvas.height = 400;
 
 let drawing = false;
 let strokes = []; // A way to store drawings
+//let testStrokes = []; // For testing, remove later
 let currentStroke = [];
 
 canvas.addEventListener("mousedown", startDrawing);
@@ -56,12 +57,22 @@ function getMousePos(e) {
 
 document.getElementById("clearBtn").onclick = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    console.log("Canvas cleared");
     strokes = [];
 };
 
 document.getElementById("sendBtn").onclick = () => {
     console.log("Drawing data:", strokes);
+    //testStrokes = strokes; // Testing only, remove this line
+    // Incomplete, need to send this to server
+    // Send through something like websockets or http
+};
 
+// Test display, remove later
+document.getElementById("testDisp").onclick = () => {
+    console.log("Displaying test data");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    renderStrokes(testStrokes);
     // Incomplete, need to send this to server
     // Send through something like websockets or http
 };
